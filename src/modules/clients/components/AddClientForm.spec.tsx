@@ -3,6 +3,7 @@ import { render, waitFor } from '@testing-library/react';
 import { AddClientForm } from './AddClientForm';
 import { useRouter } from 'next/navigation';
 import userEvent from '@testing-library/user-event';
+import { sleep } from '@/lib/sleep';
 
 function setup(jsx: ReactNode) {
   return {
@@ -120,5 +121,30 @@ describe('AddClientForm', () => {
     await user.click(getByRole('button', { name: /cancel/i }));
 
     expect(pushMock).toHaveBeenCalledWith('/');
+  });
+
+  it('submit button gets disabled while submitting', async () => {
+    const onSubmit = jest.fn(async () => {
+      await sleep(100);
+    });
+    const { getByRole, user, getByLabelText } = setup(<AddClientForm onSubmit={onSubmit} />);
+    const userData = {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john@mail.com',
+      // date input requires date in format 'YYYY-MM-DD'
+      birthDate: new Date('1990-01-01').toISOString(),
+    };
+    const saveButton = getByRole('button', { name: /save/i });
+
+    await user.type(getByLabelText(/first name/i), userData.firstName);
+    await user.type(getByLabelText(/last name/i), userData.lastName);
+    await user.type(getByLabelText(/email/i), userData.email);
+    await user.type(getByLabelText(/birth date/i), userData.birthDate.split('T')[0]);
+    await user.click(saveButton);
+
+    expect(saveButton).toBeDisabled();
+    await waitFor(() => expect(onSubmit).toHaveBeenCalledWith(userData));
+    await waitFor(() => expect(saveButton).toBeEnabled());
   });
 });

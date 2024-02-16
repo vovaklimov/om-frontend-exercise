@@ -62,10 +62,10 @@ export const AddClientForm: FC<AddClientFormProps> = ({ onSubmit }) => {
         />
 
         <Flex gap={4} justifyContent="end">
-          <Button type="button" onClick={handleCancel} isLoading={isSubmitting}>
+          <Button type="button" onClick={handleCancel} disabled={isSubmitting}>
             Cancel
           </Button>
-          <Button isLoading={isSubmitting} colorScheme="teal" type="submit">
+          <Button isLoading={isSubmitting} disabled={isSubmitting} colorScheme="teal" type="submit">
             Save
           </Button>
         </Flex>

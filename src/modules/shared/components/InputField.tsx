@@ -11,7 +11,9 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
   ({ isInvalid = false, errorMessage, label, ...inputProps }, ref) => {
     return (
       <FormControl isInvalid={isInvalid}>
-        <FormLabel>{label}</FormLabel>
+        <FormLabel color="gray.500" fontWeight="semibold">
+          {label}
+        </FormLabel>
         <Input {...inputProps} ref={ref} />
         <FormErrorMessage>{errorMessage}</FormErrorMessage>
       </FormControl>

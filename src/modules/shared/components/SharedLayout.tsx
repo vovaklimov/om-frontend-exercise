@@ -1,7 +1,7 @@
 'use client';
 
 import { FC, PropsWithChildren } from 'react';
-import { Box, Button, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react';
+import { Button, Flex, Grid, GridItem, Heading, Text } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import { useAuthenticationStoreActions, useIsLoggedIn } from '@/modules/authentication';
 import { useRouter } from 'next/navigation';
@@ -49,7 +49,7 @@ export const CommonLayout: FC<PropsWithChildren<unknown>> = ({ children }) => {
           )}
         </Flex>
       </GridItem>
-      <GridItem as="main" p={4} overflowY="auto" display="flex" justifyContent="center">
+      <GridItem as="main" p={4} pt={6} overflowY="auto" display="flex" justifyContent="center">
         <Flex maxW="container.xl" width="100%">
           {isLoggedIn ? children : <UnauthenticatedMessage />}
         </Flex>

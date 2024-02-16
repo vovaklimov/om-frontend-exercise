@@ -27,7 +27,6 @@ export const AddClientForm: React.FC = () => {
     <form onSubmit={handleSubmit(async (data) => await addClient(data))}>
       <Flex flexDir="column" gap={4}>
         <InputField
-          size="lg"
           label="First Name"
           placeholder="John"
           {...register('firstName')}
@@ -35,7 +34,6 @@ export const AddClientForm: React.FC = () => {
           errorMessage={errors.firstName?.message}
         />
         <InputField
-          size="lg"
           label="Last Name"
           placeholder="Doe"
           {...register('lastName')}
@@ -44,7 +42,6 @@ export const AddClientForm: React.FC = () => {
         />
 
         <InputField
-          size="lg"
           label="Email"
           placeholder="example@mail.com"
           {...register('email')}
@@ -53,7 +50,6 @@ export const AddClientForm: React.FC = () => {
         />
 
         <InputField
-          size="lg"
           label="Birth Date"
           {...register('birthDate')}
           type="date"

@@ -35,3 +35,10 @@ Running the tests:
 ```bash
 npm t
 ```
+
+Linting and formatting the source code:
+
+```bash
+npm run lint
+npm run format
+```

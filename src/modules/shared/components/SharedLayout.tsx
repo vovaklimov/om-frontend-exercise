@@ -22,7 +22,6 @@ export const CommonLayout: FC<PropsWithChildren<unknown>> = ({ children }) => {
       gridTemplateRows="auto 1fr auto"
       height="100dvh"
       minW="sm"
-      // maxW="container.xl"
       margin="0 auto"
       overflowX="auto"
     >

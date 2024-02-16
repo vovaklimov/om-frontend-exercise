@@ -1,14 +1,18 @@
 'use client';
 
+import { FC } from 'react';
 import { Button, Flex } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { type CreateClientInput, createClientSchema } from '../schemas/add-client-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { addClient } from '../actions';
 import { InputField } from '@/modules/shared/components';
 
-export const AddClientForm: React.FC = () => {
+interface AddClientFormProps {
+  onSubmit: (data: CreateClientInput) => Promise<void>;
+}
+
+export const AddClientForm: FC<AddClientFormProps> = ({ onSubmit }) => {
   const router = useRouter();
 
   const {
@@ -24,7 +28,7 @@ export const AddClientForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(async (data) => await addClient(data))}>
+    <form onSubmit={handleSubmit((data) => onSubmit(data))}>
       <Flex flexDir="column" gap={4}>
         <InputField
           label="First Name"

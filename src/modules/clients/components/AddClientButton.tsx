@@ -7,7 +7,7 @@ import { Link } from '@chakra-ui/next-js';
 
 export const AddClientButton: FC = () => {
   return (
-    <Tooltip label="Add new client" hasArrow>
+    <Tooltip rounded="lg" label="Add new client" hasArrow>
       <IconButton
         size="sm"
         as={Link}

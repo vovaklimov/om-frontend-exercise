@@ -1,3 +1,4 @@
+import { sleep } from './lib/sleep';
 import { Client } from './types';
 
 export class ClientsRepository {
@@ -80,10 +81,12 @@ export class ClientsRepository {
   ];
 
   async all(): Promise<Client[]> {
+    await sleep(300);
     return Promise.resolve(this.clients);
   }
 
-  create(client: Omit<Client, 'id'>): Promise<void> {
+  async create(client: Omit<Client, 'id'>): Promise<void> {
+    await sleep(300);
     this.clients.push({ id: this.nextId(), ...client });
 
     return Promise.resolve();

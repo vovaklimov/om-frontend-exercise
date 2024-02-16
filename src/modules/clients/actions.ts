@@ -7,5 +7,5 @@ import { redirect } from 'next/navigation';
 export const addClient = async (client: Omit<Client, 'id'>) => {
   await clientsRepository.create(client);
 
-  redirect('/');
+  await redirect('/');
 };
